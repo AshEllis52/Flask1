@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+
 app = Flask(__name__)
 @app.route("/")#URL leading to method
 def hello(): # Name of the method
