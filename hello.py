@@ -23,7 +23,7 @@ soup = BeautifulSoup(res.content, "lxml")
 # Based on the structure of the webpage, I found that data is in the JSON variable, under 'script' tags 
 scripts = soup.find_all('script')
 
-	import json 
+import json 
 string_with_json_obj = '' 
 # Find data for teams 
 for el in scripts: 
