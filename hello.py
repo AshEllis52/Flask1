@@ -88,7 +88,9 @@ full_stat.sort_values('pts', ascending=False, inplace=True)
 full_stat.reset_index(inplace=True, drop=True)
 full_stat['position'] = range(1,len(full_stat)+1)
 
-full_stat['xG_diff'] = full_stat['xG'] - full_stat['scored'] full_stat['xGA_diff'] = full_stat['xGA'] - full_stat['missed'] full_stat['xpts_diff'] = full_stat['xpts'] - full_stat['pts']
+full_stat['xG_diff'] = full_stat['xG'] - full_stat['scored']
+full_stat['xGA_diff'] = full_stat['xGA'] - full_stat['missed'] 
+full_stat['xpts_diff'] = full_stat['xpts'] - full_stat['pts']
 
 cols_to_int = ['wins', 'draws', 'loses', 'scored', 'missed', 'pts', 'deep', 'deep_allowed'] 
 full_stat[cols_to_int] = full_stat[cols_to_int].astype(int)
