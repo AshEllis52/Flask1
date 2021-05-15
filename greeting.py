@@ -1,6 +1,13 @@
 from flask import Flask
 from flask import request
 
+
+import plotly.express as px
+
+fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
+
+my_plot_div  = fig.to_html(full_html=False) 
+
 app = Flask(__name__)
 @app.route("/")#URL leading to method
 def hello(): # Name of the method
