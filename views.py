@@ -1,4 +1,4 @@
-from plotly.offline import plot
+from plotly import plot
 from plotly.graph_objs import Scatter
 from flask import Markup
 
