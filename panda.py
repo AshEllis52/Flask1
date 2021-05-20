@@ -1,24 +1,13 @@
 from flask import Flask
 from flask import request
-import datetime as dt
-import matplotlib.pyplot as plt
-from matplotlib import style
-import pandas as pd
-import pandas_datareader.data as web
-
-
-
 app = Flask(__name__)
-@app.route("/")
-def graphs():
- style.use('ggplot') 
- start = dt.datetime(200,1,1)
- end = dt.datetime(2016,12,31)
- 
- df = web.DataReader('TSLA', 'yahoo', start, end)
-
- return print(df.head())
-
+@app.route("/")#URL leading to method
+def hello(): # Name of the method
+ return("Hello World!")
+@app.route("/greetme")#different URL
+def helloall(): # different method name
+ name = request.args.get('name')#retrieve GET parameters
+ return("Hello {}!".format(name))#Python’s string.format
 if __name__ == "__main__":
  app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem')) #Run the flask app at port 8080
 
