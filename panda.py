@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 import datetime as dt
 import matplotlib.pyplot as plt
 from matplotlib import style
