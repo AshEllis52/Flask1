@@ -28,7 +28,7 @@ def add():
  Results = ()
  for row in rv:
   Results = []
-  Results['Date'] = row[0].replace('/n',' ')
+  Results['Date'] = row[0].replace('\n',' ')
   Results['Open'] = row[1]
   Reults['High'] = row[2]
   Results['Low'] = row[3]
