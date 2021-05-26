@@ -26,7 +26,7 @@ def hello(): # Name of the method
 @app.route("/aapl") #add
 def aapl():
  cur = conn2.cursor()
- cur.execute('''Select * FROM ytkg''')
+ cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
  Results = []
  for row in rv:
