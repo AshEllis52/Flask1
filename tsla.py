@@ -24,7 +24,7 @@ def hello(): # Name of the method
  return("Hello World!")
 
 @app.route("/aapl") #add
-def add():
+def aapl():
  cur = conn2.cursor()
  cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
@@ -48,7 +48,7 @@ def add():
  return ret
   
 @app.route("/tsla") #add
-def add():
+def tsla():
  cur = conn2.cursor()
  cur.execute('''Select * FROM TSLA''')
  rv = cur.fetchall()
