@@ -23,6 +23,29 @@ cur = conn2.cursor()
 def hello(): # Name of the method
  return("Hello World!")
 
+@app.route("/aapl") #add
+def add():
+ cur = conn2.cursor()
+ cur.execute('''Select * FROM AAPL''')
+ rv = cur.fetchall()
+ Results = []
+ for row in rv:
+  Results = {}
+  Results['Date'] = row[0].replace('\n',' ')
+  Results['Open'] = row[1]
+  Results['High'] = row[2]
+  Results['Low'] = row[3]
+  Results['Close'] = row[4]
+  Results['Adj Close'] = row[5]
+  Results['Volume'] = row[6]
+  #Results.append(Result)
+ response={'Results':Results, 'count':len(Results)}
+ ret=app.response_class(
+  response=json.dumps(response),
+  status=200,
+  mimetype='application/json'
+ )
+
 @app.route("/tsla") #add
 def add():
  cur = conn2.cursor()
