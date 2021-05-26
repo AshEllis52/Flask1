@@ -28,9 +28,9 @@ def add():
  cur = conn2.cursor()
  cur.execute('''Select * FROM TSLA''')
  rv = cur.fetchall()
- Results = ()
+ Results = []
  for row in rv:
-  Results = []
+  Results = {}
   Results['Date'] = row[0].replace('\n',' ')
   Results['Open'] = row[1]
   Reults['High'] = row[2]
