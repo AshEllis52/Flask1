@@ -19,6 +19,9 @@ conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 
 cur = conn2.cursor()
 
+@app.route("/")#URL leading to method
+def hello(): # Name of the method
+ return("Hello World!")
 
 @app.route("/tsla") #add
 def add():
