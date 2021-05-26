@@ -9,7 +9,6 @@ CORS(app)
 with open(".pw") as f:
   password = f.read()
 
-
 conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 'Server=ashdb.dbsprojects.ie;'
 'Database=Stocks;'
