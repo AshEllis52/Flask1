@@ -21,7 +21,7 @@ conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 cur = conn2.cursor()
 
 
-@app.route("/") #add
+@app.route("/tsla") #add
 def add():
  cur = conn2.cursor()
  cur.execute('''Select * FROM TSLA''')
@@ -37,7 +37,7 @@ def add():
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
   Results.append(Results)
- response = ('Results', len(Results))
+ response={'Results':Results, 'count':len(Results)}
  ret=app.response_class(
   response=json.dumps(response),
   status=200,
@@ -45,4 +45,4 @@ def add():
  )
  return ret
 if __name__ == "__main__":
-  app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem')) #Run the flask app at port 8080
+  app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem'))
