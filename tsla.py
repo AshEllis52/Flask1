@@ -45,7 +45,8 @@ def add():
   status=200,
   mimetype='application/json'
  )
-
+return ret
+  
 @app.route("/tsla") #add
 def add():
  cur = conn2.cursor()
