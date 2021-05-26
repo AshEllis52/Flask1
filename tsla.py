@@ -33,9 +33,9 @@ def add():
   Results = {}
   Results['Date'] = row[0].replace('\n',' ')
   Results['Open'] = row[1]
-  Reults['High'] = row[2]
+  Results['High'] = row[2]
   Results['Low'] = row[3]
-  Reults['Close'] = row[4]
+  Results['Close'] = row[4]
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
   Results.append(Results)
