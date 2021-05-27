@@ -36,19 +36,6 @@ def aapl():
  cur = conn2.cursor()
  cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
-start = dt.datetime(2021, 4, 4)
-end = dt.datetime(2021,5,20)
-
-df = rv
-
-df.to_csv('tsla.csv')
-          
-df = pd.read_csv('tsla.csv', parse_dates=True, index_col=0)
-
-df['Adj Close'].plot()
-plt.show()
-
-
  Results = []
  for row in rv:
   Results = {}
@@ -59,8 +46,22 @@ plt.show()
   Results['Close'] = row[4]
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
+  start = dt.datetime(2021, 4, 4)
+  end = dt.datetime(2021,5,20)
+
+  df = rv
+
+  df.to_csv('tsla.csv')
+          
+  df = pd.read_csv('tsla.csv', parse_dates=True, index_col=0)
+
+  df['Adj Close'].plot()
+  
+
+
+
   #Results.append(Result)
- response={'Results':Results, 'count':len(Results)}
+ response={'Results':plt.show(), 'count':len(Results)}
  ret=app.response_class(
   response=json.dumps(response),
   status=200,
