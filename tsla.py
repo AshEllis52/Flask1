@@ -63,7 +63,7 @@ def tsla():
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
   #Results.append(Result)
- #response={'Results':Results, 'count':len(Results)}
+ response={'Results':Results, 'count':len(Results)}
  ret=app.response_class(
   response=json.dumps(response),
   status=200,
