@@ -26,18 +26,10 @@ def hello(): # Name of the method
 @app.route("/aapl") #add
 def aapl():
  cur = conn2.cursor()
- cur.execute('''Select * FROM AAPL WHERE Volume > 0''')
+ cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
  Results = []
- for row in rv:
-  Results = {}
-  Results['Date'] = row[0].replace('\n',' ')
-  Results['Open'] = row[1]
-  Results['High'] = row[2]
-  Results['Low'] = row[3]
-  Results['Close'] = row[4]
-  Results['Adj Close'] = row[5]
-  Results['Volume'] = row[6]
+ 
   #Results.append(Result)
  response={'Results':Results, 'count':len(Results)}
  ret=app.response_class(
