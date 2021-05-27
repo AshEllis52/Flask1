@@ -69,7 +69,7 @@ def tsla():
   status=200,
   mimetype='application/json'
  )
-  return ret
+ return ret
 
 @app.route("/ba") 
 def ba():
