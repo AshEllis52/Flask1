@@ -41,7 +41,7 @@ end = dt.datetime(2021,5,20)
 
 df = rv
 
-df.to_csv('tsla.csv)
+df.to_csv('tsla.csv')
           
 df = pd.read_csv('tsla.csv', parse_dates=True, index_col=0)
 
