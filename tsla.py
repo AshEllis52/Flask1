@@ -49,8 +49,8 @@ def Graph():
  return(x)
 
 @app.route("/aapl") #add
- plt.plot([3,1,4,1,5], 'ks-', mec='w', mew=5, ms=20)
-  mpld3.show()
+plt.plot([3,1,4,1,5], 'ks-', mec='w', mew=5, ms=20)
+mpld3.show()
   
 @app.route("/tsla") #add
 def tsla():
