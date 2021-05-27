@@ -31,11 +31,11 @@ def aapl():
  Results = []
  for row in rv:
   Results = {}
-  Results['Datklvle'] = row[0].replace('\n',' ')
+  Results['Date'] = row[0].replace('\n',' ')
   Results['Open'] = row[1]
   Results['High'] = row[2]
   Results['Low'] = row[3]
-  Results['Close'] = row[4]
+  Results['Close111111'] = row[4]
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
   #Results.append(Result)
