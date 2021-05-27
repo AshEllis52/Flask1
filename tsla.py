@@ -49,7 +49,7 @@ def Graph():
  return(x)
 
 @app.route("/aapl") #add
-def():
+def 55():
  plt.plot([3,1,4,1,5], 'ks-', mec='w', mew=5, ms=20)
  return (mpld3.show()) 
   
