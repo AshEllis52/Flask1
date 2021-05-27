@@ -36,8 +36,8 @@ def aapl():
  cur = conn2.cursor()
  cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
-start = dt.datetime(2021, 04, 04)
-end = dt.datetime(2021,05,20)
+start = dt.datetime(2021, 4, 4)
+end = dt.datetime(2021,5,20)
 
 df = rv
 
