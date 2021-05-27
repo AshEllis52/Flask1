@@ -2,9 +2,17 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS
 import json
+import datetime as dt
+import matplotlib.pyplot as plt
+from matplotlib import style
+import pandas as pd
+import pandas_datareader.data as web
 import pypyodbc
 app = Flask(__name__)
 CORS(app)
+
+style.use('ggplot')
+
 
 with open(".pw") as f:
   password = f.read()
@@ -28,6 +36,19 @@ def aapl():
  cur = conn2.cursor()
  cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
+start = dt.datetime(2021, 04, 04)
+end = dt.datetime(2021,05,20)
+
+df = rv
+
+df.to_csv('tsla.csv)
+          
+df = pd.read_csv('tsla.csv', parse_dates=True, index_col=0)
+
+df['Adj Close'].plot()
+plt.show()
+
+
  Results = []
  for row in rv:
   Results = {}
@@ -55,7 +76,7 @@ def tsla():
  Results = []
  for row in rv:
   Results = {}
-  Results['Date'] = row[rv].replace('\n',' ')
+  Results['Date'] = row[0].replace('\n',' ')
   Results['Open'] = row[1]
   Results['High'] = row[2]
   Results['Low'] = row[3]
