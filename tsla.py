@@ -2,17 +2,11 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS
 import json
-import datetime as dt
+import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import style
-import pandas as pd
-import pandas_datareader.data as web
 import pypyodbc
 app = Flask(__name__)
 CORS(app)
-
-style.use('ggplot')
-
 
 with open(".pw") as f:
   password = f.read()
@@ -28,8 +22,31 @@ conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 cur = conn2.cursor()
 
 @app.route("/")#URL leading to method
-def hello(): # Name of the method
- return("Hello World!")
+def hello():
+ np.random.seed(4500)
+
+ mean = 150
+ sd = 10
+ n = 1000
+
+ heights = np.random.normal(mean, sd, n)
+
+ density = False
+
+ hist, bin_edges = np.histogram(heights, bins=50, density = density)
+
+ bin_width = bin_edges[2] - bin_edges[1]
+ print("Bin Width =", bin_width)
+
+ plt.figure()
+ plt.plot(bin_edges[:-1], hist, color="green", label="heights histogram")
+ plt.xlabel("Height")
+ plt.ylabel("Frequency")
+ plt.grid()
+ plt.legend()
+ plt.title("Histogram/Density Functions of heights of college students")
+ 
+ return(plt.show())
 
 @app.route("/aapl") #add
 def aapl():
@@ -46,22 +63,8 @@ def aapl():
   Results['Close'] = row[4]
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
-  start = dt.datetime(2021, 4, 4)
-  end = dt.datetime(2021,5,20)
-
-  df = rv
-
-  df.to_csv('tsla.csv')
-          
-  df = pd.read_csv('tsla.csv', parse_dates=True, index_col=0)
-
-  df['Adj Close'].plot()
-  
-
-
-
   #Results.append(Result)
- response={'Results':plt.show(), 'count':len(Results)}
+ response={'Results':Results, 'count':len(Results)}
  ret=app.response_class(
   response=json.dumps(response),
   status=200,
