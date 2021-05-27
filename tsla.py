@@ -3,7 +3,7 @@ from flask import request
 from flask_cors import CORS
 import json
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt, mpld3
 import pypyodbc
 app = Flask(__name__)
 CORS(app)
@@ -22,7 +22,7 @@ conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 cur = conn2.cursor()
 
 @app.route("/")#URL leading to method
-def hello():
+def Graph():
  np.random.seed(4500)
 
  mean = 150
@@ -49,28 +49,8 @@ def hello():
  return(x)
 
 @app.route("/aapl") #add
-def aapl():
- cur = conn2.cursor()
- cur.execute('''Select * FROM AAPL''')
- rv = cur.fetchall()
- Results = []
- for row in rv:
-  Results = {}
-  Results['Date'] = row[0].replace('\n',' ')
-  Results['Open'] = row[1]
-  Results['High'] = row[2]
-  Results['Low'] = row[3]
-  Results['Close'] = row[4]
-  Results['Adj Close'] = row[5]
-  Results['Volume'] = row[6]
-  #Results.append(Result)
- response={'Results':Results, 'count':len(Results)}
- ret=app.response_class(
-  response=json.dumps(response),
-  status=200,
-  mimetype='application/json'
- )
- return ret
+ plt.plot([3,1,4,1,5], 'ks-', mec='w', mew=5, ms=20)
+ mpld3.show()
   
 @app.route("/tsla") #add
 def tsla():
