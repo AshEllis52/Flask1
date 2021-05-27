@@ -45,8 +45,8 @@ def hello():
  plt.grid()
  plt.legend()
  plt.title("Histogram/Density Functions of heights of college students")
- 
- return(plt.show())
+ x = plt.show()
+ return(x)
 
 @app.route("/aapl") #add
 def aapl():
