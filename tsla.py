@@ -29,7 +29,15 @@ def aapl():
  cur.execute('''Select * FROM AAPL''')
  rv = cur.fetchall()
  Results = []
- 
+ for row in rv:
+  Results = {}
+  Results['Date'] = row[0].replace('\n',' ')
+  Results['Open'] = row[1]
+  Results['High'] = row[2]
+  Results['Low'] = row[3]
+  Results['Close'] = row[4]
+  Results['Adj Close'] = row[5]
+  Results['Volume'] = row[6]
   #Results.append(Result)
  response={'Results':Results, 'count':len(Results)}
  ret=app.response_class(
@@ -47,7 +55,7 @@ def tsla():
  Results = []
  for row in rv:
   Results = {}
-  Results['Date'] = row[0].replace('\n',' ')
+  Results['Date'] = row[rv].replace('\n',' ')
   Results['Open'] = row[1]
   Results['High'] = row[2]
   Results['Low'] = row[3]
@@ -55,7 +63,7 @@ def tsla():
   Results['Adj Close'] = row[5]
   Results['Volume'] = row[6]
   #Results.append(Result)
- response={'Results':rv, 'count':len(Results)}
+ response={'Results':Results, 'count':len(Results)}
  ret=app.response_class(
   response=json.dumps(response),
   status=200,
