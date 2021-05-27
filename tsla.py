@@ -31,7 +31,7 @@ def aapl():
  Results = []
  for row in rv:
   Results = {}
-  Results['Date'] = row[0]#.replace('\n',' ')
+  Results['Datklvle'] = row[0].replace('\n',' ')
   Results['Open'] = row[1]
   Results['High'] = row[2]
   Results['Low'] = row[3]
