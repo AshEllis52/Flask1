@@ -37,29 +37,51 @@ cur = conn2.cursor()
 
 #Data imports
 
+cur.execute('''Select * FROM AAPL''')
+rv = cur.fetchall()
+
+cur.execute('''Select * FROM TSLA''')
+rv1 = cur.fetchall()
+
+cur.execute('''Select * FROM BA''')
+rv2 = cur.fetchall()
+
 start = dt.datetime(2020, 5, 20)
 end = dt.datetime(2021,5,20)
 
 df = web.DataReader('TSLA', 'yahoo', start, end)
 df1 = web.DataReader('AAPL', 'yahoo', start, end)
+df2 = web.DataReader('BA', 'yahoo', start, end)
 
 df.to_csv('tsla.csv')
 df1.to_csv('aapl.csv')
+df2.to_csv('ba.csv')
 
 #from GetFixtres import ECS_data
-ECS_data = df
+#ECS_data = df
 #from GetFixtures2 import GK_roi
-GK_roi = df1
+#GK_roi = df1
 
 
 #Pandas Page
 @app.route('/')
-@app.route('/pandas', methods=("POST", "GET"))
+@app.route('/tsla', methods=("POST", "GET"))
 def GK():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[GK_roi.to_html(classes='data', index = False)], titles= GK_roi.columns.values)
-
+                           table=[df.to_html(classes='data', index = False)], titles= df.columns.values)
+ 
+@app.route('/aapl', methods=("POST", "GET"))
+def GK():
+    return render_template('pandas.html',
+                           PageTitle = "Pandas",
+                           table=[df1.to_html(classes='data', index = False)], titles= df1.columns.values)
+ 
+@app.route('/ba', methods=("POST", "GET"))
+def GK():
+    return render_template('pandas.html',
+                           PageTitle = "Pandas",
+                           table=[df2.to_html(classes='data', index = False)], titles= df2.columns.values)
 
 #Matplotlib page
 @app.route('/matplot', methods=("POST", "GET"))
