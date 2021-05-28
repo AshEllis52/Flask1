@@ -13,4 +13,4 @@ data=buf.getvalue()
 
 # In my case I would have used Django for the webpage
 response = HttpResponse(data, content_type='image/png')
-return response
+ return response
