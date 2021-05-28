@@ -106,8 +106,8 @@ def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
-    x = ECS_data.Close
-    y = ECS_data.Open
+    x = df.Close
+    y = df.Open
 
     ax.bar(x, y, color = "#304C89")
 
