@@ -44,12 +44,12 @@ def dog():
   sys.stdout.write(sio.getvalue())
   return ()
 
-print "Content-Type: text/html\n"
-print """<html><body>
+print ("Content-Type: text/html\n")
+print ("""<html><body>
 ...a bunch of text and html here...
 <img src="data:image/png;base64,%s"/>
 ...more text and html...
-</body></html>""" % sio.getvalue().encode("base64").strip()
+</body></html>""" % sio.getvalue().encode("base64").strip())
 
 
 if __name__ == "__main__":
