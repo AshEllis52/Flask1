@@ -25,7 +25,7 @@ conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 cur = conn2.cursor()
 
 @app.route("/")#URL leading to method
-def hello(): 
+def hello(self): 
     np.random.seed(4500)
 
     mean = 150
@@ -54,7 +54,7 @@ def hello():
     figdata = BytesIO()
     fig.savefig(figdata, format='png')
 
-    #hello.set_header('Content-Type', 'image/png')
+    self.set_header('Content-Type', 'image/png')
     self.write(figdata.getvalue())
    
     return(figdata.getvalue())
