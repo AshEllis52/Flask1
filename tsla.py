@@ -22,7 +22,7 @@ def dog():
 
   density = False
 
-  hist, bin_edges = np1.histogram(heights, bins=50, density = density)
+  hist, bin_edges = np.histogram(heights, bins=50, density = density)
 
   bin_width = bin_edges[2] - bin_edges[1]
   print("Bin Width =", bin_width)
