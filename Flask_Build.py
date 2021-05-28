@@ -89,20 +89,34 @@ def ba():
                            table=[rv2.to_html(classes='data', index = False)], titles= rv2.columns.values)
 
 #Matplotlib page
-@app.route('/matplot', methods=("POST", "GET"))
-def mpl():
+@app.route('/plot/tsla', methods=("POST", "GET"))
+def plot_tsla():
     return render_template('matplot.html',
                            PageTitle = "Matplotlib")
 
 
-@app.route('/plot.png')
+@app.route('/plot.png/tsla')
 def plot_png():
-    fig = create_figure()
+    fig = create_figure_tsla()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+  
+@app.route('/plot.png/aapl')
+def plot_png_tsla():
+    fig = create_figure_aapl()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+  
+@app.route('/plot.png/ba')
+def plot_png_aapl():
+    fig = create_figure_ba()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
 
-def create_figure():
+def create_figure_tsla():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
@@ -116,6 +130,33 @@ def create_figure():
 
     return fig
 
+def create_figure_aapl():
+    fig, ax = plt.subplots(figsize = (6,4))
+    fig.patch.set_facecolor('#E8E5DA')
+
+    x = df1.Close
+    y = df1.Open
+
+    ax.bar(x, y, color = "#304C89")
+
+    plt.xticks(rotation = 30, size = 5)
+    plt.ylabel("Open", size = 5)
+
+    return fig
+  
+def create_figure_ba():
+    fig, ax = plt.subplots(figsize = (6,4))
+    fig.patch.set_facecolor('#E8E5DA')
+
+    x = df2.Close
+    y = df2.Open
+
+    ax.bar(x, y, color = "#304C89")
+
+    plt.xticks(rotation = 30, size = 5)
+    plt.ylabel("Open", size = 5)
+
+    return fig
 
 
 
