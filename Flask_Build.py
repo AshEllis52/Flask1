@@ -60,9 +60,9 @@ rv.to_csv('tsla.csv')
 rv1.to_csv('aapl.csv')
 
 #from GetFixtres import ECS_data
-ECS_data = rv
+#ECS_data = rv
 #from GetFixtures2 import GK_roi
-GK_roi = rv1
+#GK_roi = rv1
 
 
 #Pandas Page
@@ -71,7 +71,7 @@ GK_roi = rv1
 def GK():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[GK_roi.to_html(classes='data', index = False)], titles= GK_roi.columns.values)
+                           table=[rv1.to_html(classes='data', index = False)], titles= rv1.columns.values)
 
 
 #Matplotlib page
@@ -92,8 +92,8 @@ def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
-    x = ECS_data.Open
-    y = ECS_data.Close
+    x = rv.Open
+    y = rv.Close
 
     ax.bar(x, y, color = "#304C89")
 
