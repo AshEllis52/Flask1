@@ -7,17 +7,17 @@ app = Flask(__name__)
 CORS(app)
 import matplotlib.pyplot as pyplot
 from io import BytesIO
-import numpy as np1
+import numpy as np
 
 
 @app.route("/")#URL leading to method
-np1.random.seed(4500)
+#np.random.seed(4500)
 
 mean = 150
 sd = 10
 n = 1000
 
-heights = np1.random.normal(mean, sd, n)
+heights = np.random.normal(mean, sd, n)
 
 density = False
 
