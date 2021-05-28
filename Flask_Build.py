@@ -60,9 +60,9 @@ rv.to_csv('tsla.csv')
 rv1.to_csv('aapl.csv')
 
 #from GetFixtres import ECS_data
-ECS_data = df
+ECS_data = rv
 #from GetFixtures2 import GK_roi
-GK_roi = df1
+GK_roi = rv1
 
 
 #Pandas Page
