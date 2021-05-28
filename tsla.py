@@ -1,54 +1,66 @@
-from flask import Flask
-from flask import request
-from flask_cors import CORS
-import json
-import pypyodbc
+"""  HOW TO HOST PANDAS AND MATPLOTLIB ONLINE TEMPLATE"""
+
+#Flask imports
+from flask import Flask, render_template, send_file, make_response, url_for, Response
+
+#Pandas and Matplotlib
+import pandas as pd
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+#other requirements
+import io
+
+#Data imports
+
+#from GetFixtres import ECS_data
+ECS_data = pd.read_csv("/home/jasher4994/mysite/ECS_data.csv")
+#from GetFixtures2 import GK_roi
+GK_roi = pd.read_csv("/home/jasher4994/mysite/GK_roi.csv")
+
+
 app = Flask(__name__)
-CORS(app)
-import matplotlib.pyplot as pyplot
-from io import BytesIO
-import numpy as np
+
+#Pandas Page
+@app.route('/')
+@app.route('/pandas', methods=("POST", "GET"))
+def GK():
+    return render_template('pandas.html',
+                           PageTitle = "Pandas",
+                           table=[GK_roi.to_html(classes='data', index = False)], titles= GK_roi.columns.values)
 
 
-@app.route("/")#URL leading to method
-def dog():
-  np.random.seed(4500)
+#Matplotlib page
+@app.route('/matplot', methods=("POST", "GET"))
+def mpl():
+    return render_template('matplot.html',
+                           PageTitle = "Matplotlib")
 
-  mean = 150
-  sd = 10
-  n = 1000
 
-  heights = np.random.normal(mean, sd, n)
+@app.route('/plot.png')
+def plot_png():
+    fig = create_figure()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
-  density = False
+def create_figure():
+    fig, ax = plt.subplots(figsize = (6,4))
+    fig.patch.set_facecolor('#E8E5DA')
 
-  hist, bin_edges = np.histogram(heights, bins=50, density = density)
+    x = ECS_data.team
+    y = ECS_data.gw1
 
-  bin_width = bin_edges[2] - bin_edges[1]
-  print("Bin Width =", bin_width)
+    ax.bar(x, y, color = "#304C89")
 
-  pyplot.figure()
-  pyplot.plot(bin_edges[:-1], hist, color="green", label="heights histogram")
-  pyplot.xlabel("Height")
-  pyplot.ylabel("Frequency")
-  pyplot.grid()
-  pyplot.legend()
-  pyplot.title("Histogram/Density Functions of heights of college students")
-  pyplot.show()
+    plt.xticks(rotation = 30, size = 5)
+    plt.ylabel("Expected Clean Sheets", size = 5)
 
-  format = "png"
-  sio = BytesIO()
-  pyplot.savefig(sio, format=format)
-  print ("Content-Type: image/%s\n" % format)
-  #msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY) # Needed this on windows, IIS
-  sys.stdout.write(sio.getvalue())
-  print ("Content-Type: text/html\n")
-  print ("""<html><body>
-  ...a bunch of text and html here...
-  <img src="data:image/png;base64,%s"/>
-  ...more text and html...
-  </body></html>""" % sio.getvalue().encode("base64").strip())
-  return (sio)
+
+    return fig
 
 
 
