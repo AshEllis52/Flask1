@@ -11,7 +11,7 @@ import numpy as np1
 
 
 @app.route("/")#URL leading to method
-np.random.seed(4500)
+np1.random.seed(4500)
 
 mean = 150
 sd = 10
