@@ -44,11 +44,11 @@ imgStr = "data:image/png;base64,"
 
 imgStr += base64.b64encode(figdata)
 
-print "Content-type: text/html\n"
-print """<html><body>
-# ...a bunch of text and html here...
+print ("Content-type: text/html\n")
+print ("""<html><body>)
+Ash
     <img src="%s"></img>
-#...more text and html...
+Ash
     </body></html>
 """ % imgStr
 
