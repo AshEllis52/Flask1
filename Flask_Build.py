@@ -111,42 +111,42 @@ def Doge():
                            table=[rv4.to_html(classes='data', index = False)], titles= rv4.columns.values)
  
 #Matplotlib page
-@app.route('/plot/tsla', methods=("POST", "GET"))
-def plot_tsla():
-    return render_template('matplot.html',
-                           PageTitle = "Matplotlib")
+#@app.route('/plot/tsla', methods=("POST", "GET"))
+#def plot_tsla():
+    #return render_template('matplot.html',
+                           #PageTitle = "Matplotlib")
 
 
 @app.route('/plot.png/tsla')
-def plot_png():
+def plot_png_tsla():
     fig = create_figure_tsla()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
   
 @app.route('/plot.png/aapl')
-def plot_png_tsla():
+def plot_png_aapl():
     fig = create_figure_aapl()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
   
 @app.route('/plot.png/ba')
-def plot_png_aapl():
+def plot_png_ba():
     fig = create_figure_ba()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
   
 @app.route('/plot.png/gold')
-def plot_png_aapl():
+def plot_png_gold():
     fig = create_figure_gold()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
   
 @app.route('/plot.png/doge')
-def plot_png_aapl():
+def plot_png_doge():
     fig = create_figure_doge()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
