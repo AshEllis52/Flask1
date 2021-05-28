@@ -10,16 +10,27 @@ from matplotlib.figure import Figure
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import datetime as dt
+import pandas_datareader.data as web
 
 #other requirements
 import io
 
 #Data imports
 
+start = dt.datetime(2000, 1, 1)
+end = dt.datetime(2021,12,31)
+
+df = web.DataReader('TSLA', 'yahoo', start, end)
+df1 = web.DataReader('AAPL', 'yahoo', start, end)
+
+df.to_csv('tsla.csv')
+df1.to_csv('aapl.csv')
+
 #from GetFixtres import ECS_data
-ECS_data = pd.read_csv("/home/jasher4994/mysite/ECS_data.csv")
+ECS_data = df
 #from GetFixtures2 import GK_roi
-GK_roi = pd.read_csv("/home/jasher4994/mysite/GK_roi.csv")
+GK_roi = df1
 
 
 app = Flask(__name__)
