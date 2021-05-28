@@ -71,7 +71,7 @@ rv1.to_csv('aapl.csv')
 def GK():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[rv1.to_html(classes='data', index = False)], titles= rv1.columns.values)
+                           table=[aapl.csv.to_html(classes='data', index = False)], titles= aapl.csv.columns.values)
 
 
 #Matplotlib page
@@ -92,8 +92,8 @@ def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
-    x = rv.Open
-    y = rv.Close
+    x = tsla.csv.Open
+    y = tsla.csv.Close
 
     ax.bar(x, y, color = "#304C89")
 
