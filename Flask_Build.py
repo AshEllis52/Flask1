@@ -66,19 +66,19 @@ df2.to_csv('ba.csv')
 #Pandas Page
 @app.route('/')
 @app.route('/tsla', methods=("POST", "GET"))
-def GK():
+def tsla():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
                            table=[df.to_html(classes='data', index = False)], titles= df.columns.values)
  
 @app.route('/aapl', methods=("POST", "GET"))
-def GK():
+def aapl():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
                            table=[df1.to_html(classes='data', index = False)], titles= df1.columns.values)
  
 @app.route('/ba', methods=("POST", "GET"))
-def GK():
+def ba():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
                            table=[df2.to_html(classes='data', index = False)], titles= df2.columns.values)
