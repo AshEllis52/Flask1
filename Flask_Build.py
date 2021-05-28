@@ -56,8 +56,8 @@ rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'V
 rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 #rv = df1
 
-rv.to_csv('tsla.csv')
-rv1.to_csv('aapl.csv')
+rv.to_csv('tsla')
+rv1.to_csv('aapl')
 
 #from GetFixtres import ECS_data
 #ECS_data = rv
@@ -71,7 +71,7 @@ rv1.to_csv('aapl.csv')
 def GK():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[aapl.csv.to_html(classes='data', index = False)], titles= aapl.csv.columns.values)
+                           table=[aapl.to_html(classes='data', index = False)], titles= aapl.columns.values)
 
 
 #Matplotlib page
@@ -92,8 +92,8 @@ def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
-    x = tsla.csv.Open
-    y = tsla.csv.Close
+    x = tsla.Open
+    y = tsla.Close
 
     ax.bar(x, y, color = "#304C89")
 
