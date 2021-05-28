@@ -81,12 +81,12 @@ def mpl():
                            PageTitle = "Matplotlib")
 
 
-@app.route('/plot.png')
-def plot_png():
-    fig = create_figure()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
+#@app.route('/plot.png')
+#def plot_png():
+    #fig = create_figure()
+    #output = io.BytesIO()
+   # FigureCanvas(fig).print_png(output)
+   # return Response(output.getvalue(), mimetype='image/png')
 
 def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
