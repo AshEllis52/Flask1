@@ -10,21 +10,6 @@ from io import BytesIO
 import numpy as np
 
 
-with open(".pw") as f:
-  password = f.read()
-
-conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-'Server=ashdb.dbsprojects.ie;'
-'Database=Stocks;'
-'encrypt=yes;'
-'TrustServerCertificate=yes;'
-'UID=sa;'
-'PWD='+password,autocommit = True)
-
-cur = conn2.cursor()
-
-
-
 @app.route("/")#URL leading to method
 np.random.seed(4500)
 
