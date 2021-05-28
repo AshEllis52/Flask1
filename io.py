@@ -48,8 +48,8 @@ def png():
     
     return 
 
-    print ("Content-type: text/html\n")
-    print ("""<html><body>)
+    print "Content-type: text/html\n"
+    print """<html><body>
      Ash
            <img src="%s"></img>
      Ash
