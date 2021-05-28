@@ -69,7 +69,17 @@ def create_figure():
 
     plt.xticks(rotation = 30, size = 5)
     plt.ylabel("Expected Clean Sheets", size = 5)
+    
+    fig, ax = plt.subplots(figsize = (6,4))
+    fig.patch.set_facecolor('#E8E5DA')
 
+    x = ECS_data.High
+    y = ECS_data.Low
+
+    ax.bar(x, y, color = "#304C89")
+
+    plt.xticks(rotation = 30, size = 5)
+    plt.ylabel("Expected Clean Sheets", size = 5)
 
     return fig
 
