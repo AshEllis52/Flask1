@@ -23,7 +23,7 @@ conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
 'PWD='+password,autocommit = True)
 
 cur = conn2.cursor()
-self = self
+self = x
 
 @app.route("/")#URL leading to method
 def hello(self): 
