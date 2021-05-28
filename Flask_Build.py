@@ -10,6 +10,7 @@ CORS(app)
 
 #Pandas and Matplotlib
 import pandas as pd
+from pandas import DataFrame
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib
@@ -49,8 +50,11 @@ rv1 = cur.fetchall()
 #df = web.DataReader('TSLA', 'yahoo', start, end)
 #df1 = web.DataReader('AAPL', 'yahoo', start, end)
 
-df = rv
-df1 = rv1
+
+rv = DataFrame (rv,columns=['Open','Close'])
+rv = df
+rv1 = DataFrame (rv1,columns=['Open','Close'])
+rv = df1
 
 df.to_csv('tsla.csv')
 df1.to_csv('aapl.csv')
