@@ -54,8 +54,8 @@ def hello():
     figdata = BytesIO()
     fig.savefig(figdata, format='png')
 
-    hello.set_header('Content-Type', 'image/png')
-    hello.write(figdata.getvalue())
+    #hello.set_header('Content-Type', 'image/png')
+    self.write(figdata.getvalue())
    
     return(figdata.getvalue())
 
