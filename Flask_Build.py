@@ -51,9 +51,9 @@ rv1 = cur.fetchall()
 #df1 = web.DataReader('AAPL', 'yahoo', start, end)
 
 
-rv = DataFrame (rv,columns=['Open','Close'])
+rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv = df
-rv1 = DataFrame (rv1,columns=['Open','Close'])
+rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv = df1
 
 df.to_csv('tsla.csv')
