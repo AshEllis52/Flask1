@@ -52,12 +52,12 @@ rv1 = cur.fetchall()
 
 
 rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
-rv = df
+#rv = df
 rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
-rv = df1
+#rv = df1
 
-df.to_csv('tsla.csv')
-df1.to_csv('aapl.csv')
+rv.to_csv('tsla.csv')
+rv1.to_csv('aapl.csv')
 
 #from GetFixtres import ECS_data
 ECS_data = df
