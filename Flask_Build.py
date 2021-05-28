@@ -66,11 +66,14 @@ end = dt.datetime(2021,5,20)
 df = web.DataReader('TSLA', 'yahoo', start, end)
 df1 = web.DataReader('AAPL', 'yahoo', start, end)
 df2 = web.DataReader('BA', 'yahoo', start, end)
+df3 = web.DataReader('GC=F', 'yahoo', start, end)
+df4 = web.DataReader('DOGE-USD', 'yahoo', start, end)
 
 df.to_csv('tsla.csv')
 df1.to_csv('aapl.csv')
 df2.to_csv('ba.csv')
-
+df3.to_csv('gold.csv')
+df4.to_csv('doge.csv')
 
 #Pandas Page
 @app.route('/')
@@ -134,6 +137,20 @@ def plot_png_aapl():
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
+  
+@app.route('/plot.png/gold')
+def plot_png_aapl():
+    fig = create_figure_gold()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+  
+@app.route('/plot.png/doge')
+def plot_png_aapl():
+    fig = create_figure_doge()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
 def create_figure_tsla():
     fig, ax = plt.subplots(figsize = (6,4))
@@ -176,8 +193,34 @@ def create_figure_ba():
     plt.ylabel("Open", size = 5)
 
     return fig
+  
+def create_figure_gold():
+    fig, ax = plt.subplots(figsize = (6,4))
+    fig.patch.set_facecolor('#E8E5DA')
 
+    x = df3.Close
+    y = df3.Open
 
+    ax.bar(x, y, color = "#304C89")
+
+    plt.xticks(rotation = 30, size = 5)
+    plt.ylabel("Open", size = 5)
+
+    return fig
+  
+def create_figure_doge():
+    fig, ax = plt.subplots(figsize = (6,4))
+    fig.patch.set_facecolor('#E8E5DA')
+
+    x = df4.Close
+    y = df4.Open
+
+    ax.bar(x, y, color = "#304C89")
+
+    plt.xticks(rotation = 30, size = 5)
+    plt.ylabel("Open", size = 5)
+
+    return fig
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem'))
