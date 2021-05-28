@@ -109,12 +109,6 @@ def Doge():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
                            table=[rv4.to_html(classes='data', index = False)], titles= rv4.columns.values)
- 
-#Matplotlib page
-#@app.route('/plot/tsla', methods=("POST", "GET"))
-#def plot_tsla():
-    #return render_template('matplot.html',
-                           #PageTitle = "Matplotlib")
 
 
 @app.route('/plot.png/tsla')
