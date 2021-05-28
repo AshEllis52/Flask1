@@ -52,8 +52,6 @@ ECS_data = df
 GK_roi = df1
 
 
-app = Flask(__name__)
-¯
 #Pandas Page
 @app.route('/')
 @app.route('/pandas', methods=("POST", "GET"))
