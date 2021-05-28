@@ -48,13 +48,13 @@ def png():
     
     return 
 
-           print ("Content-type: text/html\n")
-           print ("""<html><body>)
-           Ash
-                <img src="%s"></img>
-           Ash
+    print ("Content-type: text/html\n")
+    print ("""<html><body>)
+     Ash
+           <img src="%s"></img>
+     Ash
                 </body></html>
-           """ % imgStr
+     """ % imgStr
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem')) 
