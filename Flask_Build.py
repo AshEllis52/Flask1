@@ -37,41 +37,30 @@ cur = conn2.cursor()
 
 #Data imports
 
-cur = conn2.cursor()
-cur.execute('''Select * FROM AAPL''')
-rv = cur.fetchall()
+start = dt.datetime(2020, 5, 20)
+end = dt.datetime(2021,5,20)
 
-cur.execute('''Select * FROM TSLA''')
-rv1 = cur.fetchall()
+df = web.DataReader('TSLA', 'yahoo', start, end)
+df1 = web.DataReader('AAPL', 'yahoo', start, end)
 
-#start = dt.datetime(2020, 1, 1)
-#end = dt.datetime(2021,12,31)
-
-#df = web.DataReader('TSLA', 'yahoo', start, end)
-#df1 = web.DataReader('AAPL', 'yahoo', start, end)
-
-
-rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
-#rv = df
-rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
-#rv = df1
-
-rv.to_csv('tsla')
-rv1.to_csv('aapl')
+df.to_csv('tsla.csv')
+df1.to_csv('aapl.csv')
 
 #from GetFixtres import ECS_data
-#ECS_data = rv
+ECS_data = df
 #from GetFixtures2 import GK_roi
-#GK_roi = rv1
+GK_roi = df1
 
 
+app = Flask(__name__)
+¯
 #Pandas Page
 @app.route('/')
 @app.route('/pandas', methods=("POST", "GET"))
 def GK():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[aapl.to_html(classes='data', index = False)], titles= aapl.columns.values)
+                           table=[GK_roi.to_html(classes='data', index = False)], titles= GK_roi.columns.values)
 
 
 #Matplotlib page
@@ -92,8 +81,8 @@ def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
-    x = tsla.Open
-    y = tsla.Close
+    x = ECS_data.Open
+    y = ECS_data.Close
 
     ax.bar(x, y, color = "#304C89")
 
@@ -106,4 +95,4 @@ def create_figure():
 
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem')) 
+  app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem'))
