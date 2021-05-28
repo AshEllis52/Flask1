@@ -80,12 +80,12 @@ def create_figure():
     fig.patch.set_facecolor('#E8E5DA')
 
     x = ECS_data.Close
-    y = ECS_data.Open
+    y = ECS_data.Date
 
     ax.bar(x, y, color = "#304C89")
 
-    plt.xticks(rotation = 30, size = 5)
-    plt.ylabel("Open", size = 5)
+    plt.xticks(rotation = 30, size = 20)
+    plt.ylabel("Open", size = 20)
 
     return fig
 
