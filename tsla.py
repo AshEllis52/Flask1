@@ -42,14 +42,15 @@ def dog():
   print ("Content-Type: image/%s\n" % format)
   #msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY) # Needed this on windows, IIS
   sys.stdout.write(sio.getvalue())
+  print ("Content-Type: text/html\n")
+  print ("""<html><body>
+  ...a bunch of text and html here...
+  <img src="data:image/png;base64,%s"/>
+  ...more text and html...
+  </body></html>""" % sio.getvalue().encode("base64").strip())
   return (sio)
 
-print ("Content-Type: text/html\n")
-print ("""<html><body>
-...a bunch of text and html here...
-<img src="data:image/png;base64,%s"/>
-...more text and html...
-</body></html>""" % sio.getvalue().encode("base64").strip())
+
 
 
 if __name__ == "__main__":
