@@ -1,3 +1,10 @@
+from flask import Flask
+from flask import request
+from flask_cors import CORS
+import json
+import pypyodbc
+app = Flask(__name__)
+CORS(app)
 import matplotlib.pyplot as plt
 from io import BytesIO
 import numpy as np
@@ -32,3 +39,18 @@ fig = plt.figure()
 figdata = BytesIO()
 fig.savefig(figdata, format='png')
 
+
+imgStr = "data:image/png;base64,"
+
+imgStr += base64.b64encode(figdata)
+
+print "Content-type: text/html\n"
+print """<html><body>
+# ...a bunch of text and html here...
+    <img src="%s"></img>
+#...more text and html...
+    </body></html>
+""" % imgStr
+
+if __name__ == "__main__":
+  app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem')) 
