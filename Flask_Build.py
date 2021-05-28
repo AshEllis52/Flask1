@@ -46,6 +46,11 @@ rv1 = cur.fetchall()
 cur.execute('''Select * FROM BA''')
 rv2 = cur.fetchall()
 
+
+rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
+rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
+rv2 = DataFrame (rv2,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
+
 start = dt.datetime(2020, 5, 20)
 end = dt.datetime(2021,5,20)
 
