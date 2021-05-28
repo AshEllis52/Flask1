@@ -62,8 +62,8 @@ def create_figure():
     fig, ax = plt.subplots(figsize = (6,4))
     fig.patch.set_facecolor('#E8E5DA')
 
-    x = ECS_data.team
-    y = ECS_data.gw1
+    x = ECS_data.Open
+    y = ECS_data.Close
 
     ax.bar(x, y, color = "#304C89")
 
