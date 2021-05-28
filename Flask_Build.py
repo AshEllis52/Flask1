@@ -46,10 +46,19 @@ rv1 = cur.fetchall()
 cur.execute('''Select * FROM BA''')
 rv2 = cur.fetchall()
 
+cur.execute('''Select * FROM GOLD''')
+rv3 = cur.fetchall()
+
+cur.execute('''Select * FROM DOGE''')
+rv4 = cur.fetchall()
+
 
 rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv2 = DataFrame (rv2,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
+rv3 = DataFrame (rv3,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
+rv4 = DataFrame (rv4,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
+
 
 start = dt.datetime(2020, 5, 20)
 end = dt.datetime(2021,5,20)
@@ -62,14 +71,12 @@ df.to_csv('tsla.csv')
 df1.to_csv('aapl.csv')
 df2.to_csv('ba.csv')
 
-#from GetFixtres import ECS_data
-#ECS_data = df
-#from GetFixtures2 import GK_roi
-#GK_roi = df1
-
 
 #Pandas Page
 @app.route('/')
+  def hello ():
+    return("Bloody love Stocks")
+
 @app.route('/tsla', methods=("POST", "GET"))
 def tsla():
     return render_template('pandas.html',
@@ -87,7 +94,19 @@ def ba():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
                            table=[rv2.to_html(classes='data', index = False)], titles= rv2.columns.values)
-
+  
+@app.route('/gold', methods=("POST", "GET"))
+def Gold():
+    return render_template('pandas.html',
+                           PageTitle = "Pandas",
+                           table=[rv3.to_html(classes='data', index = False)], titles= rv3.columns.values)
+  
+@app.route('/doge', methods=("POST", "GET"))
+def Doge():
+    return render_template('pandas.html',
+                           PageTitle = "Pandas",
+                           table=[rv4.to_html(classes='data', index = False)], titles= rv4.columns.values)
+ 
 #Matplotlib page
 @app.route('/plot/tsla', methods=("POST", "GET"))
 def plot_tsla():
