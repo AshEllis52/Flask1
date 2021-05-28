@@ -84,7 +84,7 @@ def create_figure():
 
     ax.bar(x, y, color = "#304C89")
 
-    plt.xticks("Close"rotation = 30, size = 5)
+    plt.xticks("Close", rotation = 30, size = 5)
     plt.ylabel("Open", size = 5)
 
     return fig
