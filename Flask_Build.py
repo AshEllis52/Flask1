@@ -1,7 +1,12 @@
-"""  HOW TO HOST PANDAS AND MATPLOTLIB ONLINE TEMPLATE"""
-
 #Flask imports
 from flask import Flask, render_template, send_file, make_response, url_for, Response
+from flask import request
+from flask_cors import CORS
+import json
+import pypyodbc
+app = Flask(__name__)
+CORS(app)
+
 
 #Pandas and Matplotlib
 import pandas as pd
@@ -16,13 +21,36 @@ import pandas_datareader.data as web
 #other requirements
 import io
 
+with open(".pw") as f:
+  password = f.read()
+
+conn2 = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
+'Server=ashdb.dbsprojects.ie;'
+'Database=Stocks;'
+'encrypt=yes;'
+'TrustServerCertificate=yes;'
+'UID=sa;'
+'PWD='+password,autocommit = True)
+
+cur = conn2.cursor()
+
 #Data imports
 
-start = dt.datetime(2020, 1, 1)
-end = dt.datetime(2021,12,31)
+cur = conn2.cursor()
+cur.execute('''Select * FROM AAPL''')
+rv = cur.fetchall()
 
-df = web.DataReader('TSLA', 'yahoo', start, end)
-df1 = web.DataReader('AAPL', 'yahoo', start, end)
+cur.execute('''Select * FROM TSLA''')
+rv1 = cur.fetchall()
+
+#start = dt.datetime(2020, 1, 1)
+#end = dt.datetime(2021,12,31)
+
+#df = web.DataReader('TSLA', 'yahoo', start, end)
+#df1 = web.DataReader('AAPL', 'yahoo', start, end)
+
+df = rv
+df1 = rv1
 
 df.to_csv('tsla.csv')
 df1.to_csv('aapl.csv')
@@ -32,8 +60,6 @@ ECS_data = df
 #from GetFixtures2 import GK_roi
 GK_roi = df1
 
-
-app = Flask(__name__)
 
 #Pandas Page
 @app.route('/')
