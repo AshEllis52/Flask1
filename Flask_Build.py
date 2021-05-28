@@ -69,19 +69,19 @@ df2.to_csv('ba.csv')
 def tsla():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[df.to_html(classes='data', index = False)], titles= df.columns.values)
+                           table=[rv.to_html(classes='data', index = False)], titles= rv.columns.values)
  
 @app.route('/aapl', methods=("POST", "GET"))
 def aapl():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[df1.to_html(classes='data', index = False)], titles= df1.columns.values)
+                           table=[rv1.to_html(classes='data', index = False)], titles= rv1.columns.values)
  
 @app.route('/ba', methods=("POST", "GET"))
 def ba():
     return render_template('pandas.html',
                            PageTitle = "Pandas",
-                           table=[df2.to_html(classes='data', index = False)], titles= df2.columns.values)
+                           table=[rv2.to_html(classes='data', index = False)], titles= rv2.columns.values)
 
 #Matplotlib page
 @app.route('/matplot', methods=("POST", "GET"))
