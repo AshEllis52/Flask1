@@ -1,3 +1,6 @@
+#I based nearly all of the below code from this articel https://towardsdatascience.com/how-to-easily-show-your-matplotlib-plots-and-pandas-dataframes-dynamically-on-your-website-a9613eff7ae3
+
+
 #Flask imports
 from flask import Flask, render_template, send_file, make_response, url_for, Response
 from flask import request
@@ -52,14 +55,14 @@ rv3 = cur.fetchall()
 cur.execute('''Select * FROM DOGE''')
 rv4 = cur.fetchall()
 
-
+#convert rv from list to dataframe 
 rv = DataFrame (rv,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv1 = DataFrame (rv1,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv2 = DataFrame (rv2,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv3 = DataFrame (rv3,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 rv4 = DataFrame (rv4,columns= ['Date','Open','Close','Low','Close','Adj Close', 'Volume'])
 
-
+#I couldnt get the graph function to work with the rv sql pull, so i imported the same data from yahoo 
 start = dt.datetime(2020, 5, 20)
 end = dt.datetime(2021,5,20)
 
@@ -69,6 +72,7 @@ df2 = web.DataReader('BA', 'yahoo', start, end)
 df3 = web.DataReader('GC=F', 'yahoo', start, end)
 df4 = web.DataReader('DOGE-USD', 'yahoo', start, end)
 
+#convert data to csv to graph
 df.to_csv('tsla.csv')
 df1.to_csv('aapl.csv')
 df2.to_csv('ba.csv')
@@ -218,3 +222,4 @@ def create_figure_doge():
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem'))
+
